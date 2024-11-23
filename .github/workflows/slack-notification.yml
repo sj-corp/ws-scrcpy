@@ -1,0 +1,28 @@
+name: slack-notification
+
+on:
+  push:
+    branches:
+      - '**'
+  pull_request:
+    branches:
+      - '**'
+
+jobs:
+  notification:
+    permissions: write-all
+    name: Slack Notification
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Slack Notification
+        uses: importamt/action-gitstory-slack@1.0.7
+        env:
+          TZ: Asia/Seoul
+          SLACK_WEBHOOK_URL: https://hooks.slack.com/services/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
+          BEFORE_REF: ${{ github.event.before }}
+        if: always() # Pick Up events even if the job fails or is cancelled.
