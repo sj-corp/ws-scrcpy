@@ -19,7 +19,7 @@ cd /home/nhadmin/remote-control-server || {
 
 # git pull 실행
 log "git pull 시작..."
-git pull origin main || {
+git pull origin master || {
     log "git pull 실패"
     exit 1
 }
